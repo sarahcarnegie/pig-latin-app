@@ -1,24 +1,31 @@
 vowels = "aeiou"
-word = "apple"
 suffix = "ay"
-# case_two = "monkey"
-# case_three = "skip"
-# case_four = "string"
-# case_five = "sleep"
-
 first_vowel_index = -1 # check this for good practice in python
-wordaslist = enumerate(word)
-for index, char in wordaslist:
-    if char in vowels:
-        first_vowel_index = index
-        break
+
+def convert(word):
+    for index, char in enumerate(word):
+        if char in vowels:
+            global first_vowel_index
+            first_vowel_index = index
+            break
     
 if first_vowel_index == -1:
     print("no vowel in: " + word)
    
 if first_vowel_index == 0:
     print(word + suffix)
-   
+
+convert("apple")
+convert("eat")
+convert("octopus")
+convert("igloo")
+convert("unicorn") 
+convert("bbbl")
+convert("sleep")
+convert("skip")
+convert("string")
+convert("monkey")
+
 # loop thru letters in the word and check each letter to see if it's a vowel
 # assign to the variable
 
@@ -34,3 +41,5 @@ if first_vowel_index == 0:
 # git add <filename> - track the relevant files
 # git commit -m "this commit will...."
 # git push - pushes changes to github
+
+# I debugged my code using print
