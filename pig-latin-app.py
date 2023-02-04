@@ -2,37 +2,45 @@ import re
 vowels = "aeiou"
 suffix = "ay"
 
-# first_vowel_index takes a word and returns the index of the first vowel
-# if no vowel is found it returns -1
-def first_vowel_index(word:str) -> int:
+# convert takes a word and returns the word in pig-latin
+def convert(word:str) -> str: 
+    # find the index of the first vowel
+    first_vowel_index = -1
     for index, char in enumerate(word):
         if char in vowels:
-            return index
-    return -1
-
-# covert take a word and the index of the first vowel(>=0) and return the word in pig-latin
-def convert(word:str, first_vowel_index:int) -> str: 
+            first_vowel_index = index
+            break
+    
     lc_word = word.lower()
-    if first_vowel_index < 0:
-        print("error: index must be 0 or greater") 
-    elif first_vowel_index > 0: 
-        cons_before_vowel = lc_word[:first_vowel_index:]
+    if first_vowel_index >= 0:
+        # takes a substring from the start of the word to first vowel
+        cons_before_vowel = lc_word[:first_vowel_index:] 
+        # takes a substring from first vowel to the end of the word
         new_word = lc_word[first_vowel_index::]
         return new_word + cons_before_vowel + suffix
 
-    return word + suffix
+    print("error: no vowel in: " + word)
+    return "" 
+    
+with open('words-in.txt') as f:
+    for word in f:
+        piglatin = convert(word.strip())
+        print(piglatin)
 
-test_cases = ("apple", "bbbl", "monkey","sleep","string", "Bandicoot", "pla!ypus", "do1phin")
-for test_wrd in test_cases:
-    if bool(re.search(r'\d',test_wrd))==True:        
-        print("invalid word: " + test_wrd)
-    else:
-        index = first_vowel_index(test_wrd)
-        if index < 0:
-            print("no vowel in: " + test_wrd)
-        else:
-            piglatin = convert(test_wrd, index)
-            print(piglatin)
+
+
+
+
+
+
+# tests
+# test_cases = ("apple", "bbbl", "monkey","sleep","string", "Bandicoot", "pla!ypus", "do1phin")
+# for test_wrd in test_cases:
+#     if bool(re.search(r'\d',test_wrd))==True:        
+#         print("invalid word: " + test_wrd)     
+#     else:
+#         piglatin = convert(test_wrd)
+#         print(piglatin)
 
 # save file
 # git status - checks which files have changed
