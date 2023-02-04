@@ -1,7 +1,7 @@
 import re
 vowels = "aeiou"
 suffix = "ay"
-
+pl_words = []
 # convert takes a word and returns the word in pig-latin
 def convert(word:str) -> str: 
     # find the index of the first vowel
@@ -25,8 +25,14 @@ def convert(word:str) -> str:
 with open('words-in.txt') as f:
     for word in f:
         piglatin = convert(word.strip())
-        print(piglatin)
-
+        pl_words.append(piglatin)
+    f.close()
+        
+with open('words-out.txt', 'w') as f:
+    for word in pl_words:
+        f.write(f"{word}\n")
+    f.close()
+        
 
 
 
