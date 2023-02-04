@@ -2,15 +2,25 @@ import re
 vowels = "aeiou"
 suffix = "ay"
 pl_words = []
+special_characters = "!@#$%^&*()-+?_=,<>/ "
 # convert takes a word and returns the word in pig-latin
-def convert(word:str) -> str: 
+def convert(word:str) -> str:
+    # check for numbers
+    if bool(re.search(r'\d', word))==True:        
+        print("invalid word: " + word)
+        return "" 
+
+    if any(c in special_characters for c in word):
+        print("invalid word: " + word)
+        return "" 
+
     # find the index of the first vowel
     first_vowel_index = -1
     for index, char in enumerate(word):
         if char in vowels:
             first_vowel_index = index
             break
-    
+
     lc_word = word.lower()
     if first_vowel_index >= 0:
         # takes a substring from the start of the word to first vowel
@@ -42,8 +52,7 @@ with open('words-out.txt', 'w') as f:
 # tests
 # test_cases = ("apple", "bbbl", "monkey","sleep","string", "Bandicoot", "pla!ypus", "do1phin")
 # for test_wrd in test_cases:
-#     if bool(re.search(r'\d',test_wrd))==True:        
-#         print("invalid word: " + test_wrd)     
+#         
 #     else:
 #         piglatin = convert(test_wrd)
 #         print(piglatin)
