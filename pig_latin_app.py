@@ -17,7 +17,7 @@ def convert(word:str) -> str:
             new_word = word.lower()[index::] # extracts first vowel to word end 
             return new_word + cons_before_vowel + "ay"
 
-    print("error: no vowel in: " + word)
+    print("invalid word: no vowel in: " + word)
     return "" 
 
 # reads original words from file 
