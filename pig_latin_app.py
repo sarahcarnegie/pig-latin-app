@@ -10,7 +10,7 @@ def convert(word:str) -> str:
         print("invalid word: " + word)
         return "" 
 
-    # interate through letters
+    # iterate through letters
     for index, char in enumerate(word):
         if char in "aeiou": # if vowel found, convert to pig latin
             cons_before_vowel = word.lower()[:index:] # extracts word start to first vowel (lowercase)
